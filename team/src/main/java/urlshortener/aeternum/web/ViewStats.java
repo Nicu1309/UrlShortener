@@ -42,7 +42,8 @@ public class ViewStats {
         }
 
         List<Click> topClicks = getTopUrl(new Long(10));
-
+        LOG.info("Clicks que hay" + clickRepository.count());
+        
         int responseTime = 69;
         int memoryUsed = 69;
         int memoryAvailable = 69;

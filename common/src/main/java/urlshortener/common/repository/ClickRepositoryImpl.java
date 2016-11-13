@@ -105,7 +105,7 @@ public class ClickRepositoryImpl implements ClickRepository {
 					cl.getHash(), cl.getCreated(), cl.getReferrer(),
 					cl.getBrowser(), cl.getPlatform(), cl.getIp(),
 					cl.getCountry(), cl.getId());
-			
+
 		} catch (Exception e) {
 			log.info("When update for id " + cl.getId(), e);
 		}
@@ -158,6 +158,9 @@ public class ClickRepositoryImpl implements ClickRepository {
             return jdbc.query("SELECT *, count(*) AS TopUrl FROM click GROUP BY hash ORDER BY " +
                 "TopUrl DESC LIMIT ?", new Object[] { limit }, rowMapper);
         } catch (Exception e) {
+						log.error("CUIDADO QUE HA SALTADO EXCEPCION ");
+						log.error(e.getMessage());
+						log.error(""+e.getStackTrace());
             log.debug("When select for limit " + limit + " and offset ", e);
             return null;
         }
